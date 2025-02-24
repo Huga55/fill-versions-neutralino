@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="title">Генератор конфига</h2>
+      <textarea
+        id="userConfig"
+        class="textarea"
+        placeholder="Введите ваш конфиг"
+      ></textarea>
+      <textarea
+        id="submodulesList"
+        class="textarea"
+        placeholder="Введите модули и версии"
+      ></textarea>
+      <button id="generate" class="btn">Сгенерировать</button>
+    </div>
+
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span id="modal-close" class="modal-close">&times;</span>
+        <textarea
+          id="output"
+          class="textarea textarea_modal"
+          placeholder="Результат"
+        ></textarea>
+        <button id="copy" class="btn">Скопировать конфиг</button>
+      </div>
+    </div>
+
+    <div id="toast" class="toast">Скопировано успешно</div>
+
+    <script src="/neutralino.js"></script>
+    <script type="module" src="/src/render.ts"></script>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
