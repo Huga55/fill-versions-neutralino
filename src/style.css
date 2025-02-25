@@ -149,3 +149,14 @@ body {
   opacity: 1;
   visibility: visible;
 }
+
+.error {
+  display: none;
+  padding: 10px 0;
+  font-size: 14px;
+  color: red;
+}
+
+.error_active {
+  display: block;
+}

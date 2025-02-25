@@ -1,7 +1,7 @@
 export const errors = {
-  notFoundSubmodulesArray: 'Array is not found',
-  incorrectSubmodules: 'Incorrect submodules list',
-  submoduleInfoLength: 'Submodule does not include 2 values',
+  notFoundSubmodulesArray: "There is not Submodules array in config",
+  incorrectSubmoduleVersions: "Incorrect submodule versions",
+  submoduleInfoLength: "Submodule does not include 2 values",
 } as const;
 
 export interface IErrorManager {

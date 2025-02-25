@@ -1,14 +1,14 @@
-import { ISubmoduleElem } from '../interfaces/index';
-import { IErrorManager } from '../services/ErrorManager/ErrorManager';
-import { ISubmoduleParser } from '../services/SubmoduleParser/SubmoduleParser';
-import { ISubmoduleUpdater } from '../services/SubmoduleUpdater/SubmoduleUpdater';
+import { ISubmoduleElem } from "../interfaces/index";
+import { IErrorManager } from "../services/ErrorManager/ErrorManager";
+import { ISubmoduleParser } from "../services/SubmoduleParser/SubmoduleParser";
+import { ISubmoduleUpdater } from "../services/SubmoduleUpdater/SubmoduleUpdater";
 
 export interface ISubmoduleManager {
   processSubmodules(userConfig: string, submodulesString: string): void;
 }
 
 export class SubmoduleManager implements ISubmoduleManager {
-  private subsystemsKey = 'subsystems';
+  private subsystemsKey = "subsystems";
 
   constructor(
     private errorManager: IErrorManager,
@@ -27,7 +27,7 @@ export class SubmoduleManager implements ISubmoduleManager {
     const updatedSubmodulesArray = submodulesArray.map((module) =>
       this.fillCorrectVersion(module, submoduleVersions)
     );
-    const subsystemVersion = submoduleVersions.get(this.subsystemsKey) ?? '';
+    const subsystemVersion = submoduleVersions.get(this.subsystemsKey) ?? "";
 
     return this.submoduleUpdater.updateSubmodulesString(
       userConfig,
@@ -40,10 +40,10 @@ export class SubmoduleManager implements ISubmoduleManager {
     submoduleVersionsString: string
   ): Map<string, string> {
     try {
-      const submodulesStringList = submoduleVersionsString.trim().split('\n');
+      const submodulesStringList = submoduleVersionsString.trim().split("\n");
 
       const submodulesList = submodulesStringList.map((line) => {
-        const submoduleInfo = line.split(':').map((value) => value.trim());
+        const submoduleInfo = line.split(":").map((value) => value.trim());
 
         if (submoduleInfo.length !== 2) {
           this.errorManager.executeError(
@@ -57,7 +57,7 @@ export class SubmoduleManager implements ISubmoduleManager {
       return new Map(submodulesList);
     } catch (e) {
       this.errorManager.executeError(
-        `${this.errorManager.errors.incorrectSubmodules}: ${e}`
+        `${this.errorManager.errors.incorrectSubmoduleVersions}: ${e}`
       );
     }
   }
@@ -68,7 +68,7 @@ export class SubmoduleManager implements ISubmoduleManager {
   ): ISubmoduleElem {
     const { jarName } = module;
 
-    const moduleName = jarName.split('.')[0];
+    const moduleName = jarName.split(".")[0];
     const updatedVersion = submoduleVersions.get(moduleName);
 
     if (moduleName && updatedVersion) {

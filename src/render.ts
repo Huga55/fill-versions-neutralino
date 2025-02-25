@@ -19,11 +19,30 @@ const getInputValue = (element: Element | null) => {
   throw new Error("HTMLElement is not HTMLTextAreaElement");
 };
 
+const toggleError = (error?: string) => {
+  const errorBlock = document.getElementById("error");
+
+  if (!errorBlock) {
+    return;
+  }
+
+  if (!error) {
+    errorBlock.innerHTML = "";
+    errorBlock.classList.remove("error_active");
+    return;
+  }
+
+  errorBlock.innerHTML = error;
+  errorBlock.classList.add("error_active");
+};
+
 document.getElementById("generate")?.addEventListener("click", () => {
   const userConfig = getInputValue(document.getElementById("userConfig"));
   const submodulesList = getInputValue(
     document.getElementById("submodulesList")
   );
+
+  toggleError();
 
   Neutralino.events.dispatch("generate", { userConfig, submodulesList });
 });
@@ -39,6 +58,12 @@ Neutralino.events.on("generated", (event: CustomEvent) => {
     outputInput.value = result;
     modal?.classList.add("show");
   }
+});
+
+Neutralino.events.on("error", (event: CustomEvent) => {
+  const { error } = event.detail;
+
+  toggleError(error);
 });
 
 document.getElementById("copy")?.addEventListener("click", () => {
