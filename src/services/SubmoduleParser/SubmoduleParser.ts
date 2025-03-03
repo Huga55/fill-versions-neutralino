@@ -1,5 +1,5 @@
-import { ISubmoduleElem } from '../../interfaces/index';
-import { IErrorManager } from '../ErrorManager/ErrorManager';
+import { ISubmoduleElem } from "../../interfaces/index";
+import { IErrorManager } from "../ErrorManager/ErrorManager";
 
 export interface ISubmoduleParser {
   getSubmodulesArray(inputString: string): ISubmoduleElem[];
@@ -29,11 +29,11 @@ export class SubmoduleParser implements ISubmoduleParser {
   }
 
   private removeSpacesFromString(str: string) {
-    return str.replace(/\s+/g, '');
+    return str.replace(/\s+/g, "");
   }
 
   private removeTrailingComma(str: string) {
-    return str.replace(/,\s*(\])/, '$1');
+    return str.replace(/,\s*(\])/, "$1");
   }
 
   private throwError(): never {

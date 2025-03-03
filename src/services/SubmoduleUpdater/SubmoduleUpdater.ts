@@ -1,4 +1,4 @@
-import { ISubmoduleElem } from '../../interfaces';
+import { ISubmoduleElem } from "../../interfaces";
 
 export interface ISubmoduleUpdater {
   updateSubmodulesString(
@@ -22,7 +22,7 @@ export class SubmoduleUpdater implements ISubmoduleUpdater {
 
     const replacedSubsystemString = submodulesString.replace(
       this.subsystemRegExp,
-      ['--branch "', subsystemVersion, '" '].join('')
+      ['--branch "', subsystemVersion, '" '].join("")
     );
 
     const withoutArrayLineBrakesString = this.removeArrayLineBrakes(
@@ -39,7 +39,7 @@ export class SubmoduleUpdater implements ISubmoduleUpdater {
 
     if (arrayMatch) {
       const arrayContent = arrayMatch[1];
-      const trimmedArrayContent = arrayContent.replace(/\s+/g, '');
+      const trimmedArrayContent = arrayContent.replace(/\s+/g, "");
 
       const output = input.replace(arrayMatch[0], trimmedArrayContent);
       return output;
@@ -52,9 +52,9 @@ export class SubmoduleUpdater implements ISubmoduleUpdater {
     const settingsString = JSON.stringify(settings);
 
     return settingsString
-      .replace(/\[\{/, '[\n{') // add opening break line
-      .replace(/},/g, '},\n') // add break lines between items
-      .replace(/}\]/, '}\n]') // add closing break line
+      .replace(/\[\{/, "[\n{") // add opening break line
+      .replace(/},/g, "},\n") // add break lines between items
+      .replace(/}\]/, "}\n]") // add closing break line
       .replace(/(\",)/g, `$1 `); // add space after comma in items
   }
 }

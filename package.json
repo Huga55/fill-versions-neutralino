@@ -7,7 +7,9 @@
   "scripts": {
     "start": "neu run",
     "dev": "concurrently \"vite\" \"neu run\"",
-    "build": "vite build && neu build"
+    "build:vite": "vite build",
+    "build:neu": "neu build",
+    "test": "jest ./src"
   },
   "dependencies": {
     "@neutralinojs/neu": "^3.0.0",
@@ -15,8 +17,13 @@
     "yarn": "^1.22.19"
   },
   "devDependencies": {
+    "@babel/core": "^7.26.9",
+    "@babel/preset-env": "^7.26.9",
+    "@babel/preset-typescript": "^7.26.0",
+    "@types/jest": "^29.5.14",
     "@types/node": "^17.0.38",
     "@vitejs/plugin-vue": "^2.3.3",
+    "babel-jest": "^29.7.0",
     "fs-extra": "^11.3.0",
     "jest": "^29.7.0",
     "neutralinojs-types": "^1.1.1",
